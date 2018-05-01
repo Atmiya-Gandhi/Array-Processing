@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<script src="http://code.jquery.com/jquery-1.4.3.min.js" type="text/javascript"></script>   
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Button").click(function () {
+
+            var currentPosition = parseInt($("#Current_Position_Input").val());
+            var NumOfMoves = parseInt($("#Move_Input").val());
+            var StartOfArray = parseInt($("#Array_Start_Input").val());
+            var EndOfArray = parseInt($("#Array_End_Input").val());
+            var intDirection = 0;
+            var i;
+            var x = [];
+
+            $("#Move_output").html("" + NumOfMoves);
+
+            // input validation
+            if (StartOfArray > EndOfArray) {
+                alert("Start point cannot be greater than end of the array.");
+                return 0;
+            }
+            else if (currentPosition > EndOfArray || currentPosition < StartOfArray) {
+                alert("Invalid input of current position. Out of array index.");
+                return 0;
+            }
+
+            // decide the direction in which moves will be
+            intDirection = (NumOfMoves > 0) ? 1 : -1;
+
+            // initialize the array
+            for (i = StartOfArray; i <= EndOfArray; i++)
+                x[i] = i;
+
+            //compute the last position
+            while (NumOfMoves != 0) {
+                if (currentPosition == EndOfArray && intDirection == 1)
+                    currentPosition = StartOfArray;
+                else if (currentPosition == StartOfArray && intDirection == -1)
+                    currentPosition = EndOfArray;
+                else
+                    currentPosition = currentPosition + intDirection;
+                NumOfMoves = NumOfMoves - intDirection;
+            }
+
+            $("#Output").html(""+ currentPosition);
+            $("#Array_output").html("" + jQuery.grep(x, function(n){
+                return (n >= StartOfArray && n<= EndOfArray);
+            }));
+        });
+
+        
+    });
+    
+   
+
+</script>
+</head>
+<body>
+<h4><b>Below is the explanation of this application:</b></h4>
+
+<p>the first parameter that you pass in the function is the current position<br>
+The second parameter is the # of moves. <br>
+The third parameter is the  number of the array and fourth is the last.<br>
+if end/start of array is reached, loop from the other end again.<br></p>
+<h4><b>Now please click on Beow link/button to run this appplication...!!!!</b></h4>
+
+
+<table><tr><td>Enter value for current position:</td><td><input type="text" id="Current_Position_Input"></td></tr>
+<tr><td>Enter value for move:</td><td><input type="text" id="Move_Input"></td></tr>
+<tr><td>Enter value for start of array:</td><td><input type="text" id="Array_Start_Input"></td></tr>
+<tr><td>Enter value for end of the array:</td><td><input type="text" id="Array_End_Input"></td></tr>
+<tr><td><input type="button" value="Click me" id="Button"></td></tr></table>
+
+
+<table><tr><td><p>Array:</p></td><td><p id=Array_output></p></td></tr>
+<tr><td><p>Move:</p></td><td> <p id=Move_output></p></td></tr>
+<tr><td><p>Output:</p></td><td> <p id=Output></p></td></tr></table>
+
+
+</body>
+</html>
