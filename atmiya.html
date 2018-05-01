@@ -60,6 +60,7 @@
 </script>
 </head>
 <body>
+<link href="atm.css" type="text/css" rel="stylesheet">
 <h4><b>Below is the explanation of this application:</b></h4>
 
 <p>the first parameter that you pass in the function is the current position<br>
@@ -69,10 +70,10 @@ if end/start of array is reached, loop from the other end again.<br></p>
 <h4><b>Now please click on Beow link/button to run this appplication...!!!!</b></h4>
 
 
-<table><tr><td>Enter value for current position:</td><td><input type="text" id="Current_Position_Input"></td></tr>
-<tr><td>Enter value for move:</td><td><input type="text" id="Move_Input"></td></tr>
-<tr><td>Enter value for start of array:</td><td><input type="text" id="Array_Start_Input"></td></tr>
-<tr><td>Enter value for end of the array:</td><td><input type="text" id="Array_End_Input"></td></tr>
+<table><tr><td>Enter value for current position:</td><td><input type="number" min="1" step="1"onkeypress="return event.charCode >= 48" onkeydown="javascript: return event.keyCode == 69 ? false : true" id="Current_Position_Input"></td></tr>
+<tr><td>Enter value for move:</td><td><input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" id="Move_Input"></td></tr>
+<tr><td>Enter value for start of array:</td><td><input type="number" min="0" step="1" onkeypress="return event.charCode >= 48" onkeydown="javascript: return event.keyCode == 69 ? false : true" id="Array_Start_Input"></td></tr>
+<tr><td>Enter value for end of the array:</td><td><input type="number" min="0" step="1" onkeypress="return event.charCode >= 48" onkeydown="javascript: return event.keyCode == 69 ? false : true" id="Array_End_Input"></td></tr>
 <tr><td><input type="button" value="Click me" id="Button"></td></tr></table>
 
 
